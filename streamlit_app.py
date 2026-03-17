@@ -14,14 +14,14 @@ try:
     AIO_KEY = st.secrets["AIO_KEY"]
     # 火山方舟豆包API密钥（你拿到的）
     DOUBAO_API_KEY = st.secrets["DOUBAO_API_KEY"]
-    # 火山方舟模型endpoint ID（替换成你自己的）
-    DOUBAO_MODEL_ENDPOINT = st.secrets["DOUBAO_MODEL_ENDPOINT"]
+    # 你的endpoint ID（已替换）
+    DOUBAO_MODEL_ENDPOINT = "doubao-1-5-lite-32k-250115"
 except:
     # 本地运行时读取系统环境变量
     AIO_USERNAME = os.getenv("AIO_USERNAME", "lyc0519")
     AIO_KEY = os.getenv("AIO_KEY", "")
     DOUBAO_API_KEY = os.getenv("DOUBAO_API_KEY", "")
-    DOUBAO_MODEL_ENDPOINT = os.getenv("DOUBAO_MODEL_ENDPOINT", "")
+    DOUBAO_MODEL_ENDPOINT = "doubao-1-5-lite-32k-250115"
 
 # ====================== Feed配置（已修正） ======================
 REGIONS = {
@@ -140,8 +140,8 @@ def get_doubao_analysis(region_name):
        - 语言专业但易懂，分点说明，不超过500字
     """
 
-    # 3. 调用火山方舟豆包API
-    if not DOUBAO_API_KEY or not DOUBAO_MODEL_ENDPOINT:
+    # 3. 调用火山方舟豆包API（已替换你的endpoint ID）
+    if not DOUBAO_API_KEY:
         return "❌ 豆包API密钥未配置，请检查Streamlit Secrets"
     
     url = "https://ark.cn-beijing.volces.com/api/v3/chat/completions"
@@ -150,7 +150,7 @@ def get_doubao_analysis(region_name):
         "Content-Type": "application/json"
     }
     data = {
-        "model": DOUBAO_MODEL_ENDPOINT,  # 你的火山方舟模型endpoint ID
+        "model": "doubao-1-5-lite-32k-250115",  # 你的endpoint ID
         "messages": [
             {"role": "system", "content": "你是资深智能农业分析师，专注于作物授粉环境分析，只输出分析内容，不添加无关话术"},
             {"role": "user", "content": prompt}
@@ -165,7 +165,7 @@ def get_doubao_analysis(region_name):
         result = response.json()
         return result["choices"][0]["message"]["content"]
     except Exception as e:
-        return f"❌ 豆包AI分析失败：{str(e)}\n请检查API密钥和模型endpoint是否正确"
+        return f"❌ 豆包AI分析失败：{str(e)}\n请检查API密钥是否正确"
 
 # -------------------------- 主界面逻辑 --------------------------
 st.title("🌱 智能授粉机器人物联网可视化平台")
