@@ -89,16 +89,21 @@ def check_env_alert(value, type_key):
         return "✅ 适宜", "#2ecc71"
 
 def export_to_excel(df_dict):
-    """数据导出Excel"""
+    """数据导出Excel（修复时区问题，兼容openpyxl）"""
     output = BytesIO()
     with pd.ExcelWriter(output, engine="openpyxl") as writer:
         for region, df in df_dict.items():
             if df is not None and not df.empty:
-                df.to_excel(writer, sheet_name=region, index=False)
+                # 核心修复：将带时区的时间转换为无时区的字符串，兼容Excel
+                df_export = df.copy()
+                df_export["时间"] = df_export["时间"].dt.strftime("%Y-%m-%d %H:%M:%S")
+                df_export.to_excel(writer, sheet_name=region, index=False)
     output.seek(0)
     return output
 
-# -------------------------- 豆包AI分析核心函数 --------------------------
+
+
+# -------------------------- AI分析核心函数 --------------------------
 def get_doubao_analysis(region_name):
     """调用火山方舟豆包API生成农业数据分析报告"""
     # 1. 获取并整理数据
@@ -169,16 +174,16 @@ def get_doubao_analysis(region_name):
 
 # -------------------------- 主界面逻辑 --------------------------
 st.title("🌱 智能授粉机器人物联网可视化平台")
-st.markdown("### 多区域环境监测 | 授粉状态管理 | 豆包AI智能分析")
+st.markdown("### 多区域环境监测 | 授粉状态管理 | AI智能分析")
 st.divider()
 
 # 区域选择
 selected_region = st.selectbox("选择监控区域", list(REGIONS.keys()), index=0)
 region_config = REGIONS[selected_region]
 
-# 1. 监控图像
-st.subheader(f"📹 {selected_region} 监控图像")
-st.image(region_config["monitor_img"], use_container_width=True)
+# 1. 监控画面（本地视频）
+st.subheader(f"📹 {selected_region} 监控画面")
+st.video("testvideo.mp4")  # 这里写你的视频文件名
 st.markdown("<br>", unsafe_allow_html=True)
 
 # 2. 实时数据
