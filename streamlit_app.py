@@ -299,6 +299,6 @@ else:
 
 # 自动刷新
 st.markdown(f"""
-    <meta http-equiv="refresh" content="10">
+    <meta http-equiv="refresh" content="30">
     <p style='text-align:center;color:#999;font-size:12px;'>页面每10秒自动刷新 | 最后刷新：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
 """, unsafe_allow_html=True)
