@@ -183,7 +183,7 @@ region_config = REGIONS[selected_region]
 
 # 1. 监控画面（抖音解析直链，直接可用）
 st.subheader(f"📹 {selected_region} 监控画面")
-st.video("https://v5-se-gddgtc-default.365yg.com/1480bcaae7eee60ccf94b1193765fd6c/69cf83c7/video/tos/cn/tos-cn-ve-0015c800/ok1ztmYuDZfYAeHJLgNQcgAcjDTOBAnGAIdb9s/?a=0&ch=0&cr=0&dr=0&lr=unwatermarked&net=5&cd=0%7C0%7C0%7C0&cv=1&br=5881&bt=5881&cs=0&ds=4&ft=k7Fz7VVywIiRZm8Zmo~pK7pswAp2oBZ_vrKlISd2do0g3cI&mime_type=video_mp4&qs=0&rc=ZzhnaDY4PDlkZ2QzPDY4aEBpM3BkbTY6ZmpycjMzNGkzM0AzYjViXy9iNS8xYmA2YS5gYSMtXzBfcjRvanBgLS1kLWFzcw%3D%3D&btag=80000e00008000&cquery=106H&dy_q=1775203754&feature_id=46a7bb47b4fd1280f3d3825bf2b29388&l=202604031609144F8EA4B19224A23FD056")
+st.video("https://github.com/Lyc0519/pollnation-dashboard/releases/download/v1/testvideo.mp4")
 st.markdown("<br>", unsafe_allow_html=True)
 # 2. 实时数据
 st.subheader(f"📊 {selected_region} 实时数据")
