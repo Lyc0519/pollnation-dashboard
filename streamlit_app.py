@@ -174,7 +174,7 @@ def get_doubao_analysis(region_name):
 
 # -------------------------- 主界面逻辑 --------------------------
 st.title("🌱 智能授粉系统客户端")
-st.markdown("### 多区域环境监测 | 授粉状态管理 | AI智能分析")
+st.markdown("### 多区域环境监测 | 授粉状态管理 | AI牛马🐂🐎智能分析")
 st.divider()
 
 # 区域选择
@@ -259,10 +259,10 @@ if poll_history is not None and not poll_history.empty:
 st.divider()
 
 # -------------------------- 豆包AI分析模块 --------------------------
-st.subheader("🤖 豆包AI 智能农业数据分析")
+st.subheader("🤖🐂🐎 AI牛马智能农业数据分析")
 if temp_df is not None and hum_df is not None and poll_df is not None:
-    if st.button("生成豆包智能分析报告", type="primary"):
-        with st.spinner("豆包正在分析农业数据，请稍候..."):
+    if st.button("召唤AI牛马生成智能分析报告", type="primary"):
+        with st.spinner("您的AI牛马正在分析农业数据，请稍候..."):
             analysis_report = get_doubao_analysis(selected_region)
         st.markdown("### 📝 分析报告")
         st.markdown(analysis_report)
