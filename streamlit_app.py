@@ -41,7 +41,7 @@ THRESHOLDS = {
 
 # 页面配置
 st.set_page_config(
-    page_title="🌱 智能授粉机器人物联网可视化平台",
+    page_title="🌱 智能授粉系统客户端",
     page_icon="🌱",
     layout="wide"
 )
@@ -170,10 +170,10 @@ def get_doubao_analysis(region_name):
         result = response.json()
         return result["choices"][0]["message"]["content"]
     except Exception as e:
-        return f"❌ 豆包AI分析失败：{str(e)}\n请检查API密钥是否正确"
+        return f"❌ AI分析失败：{str(e)}\n请检查API密钥是否正确"
 
 # -------------------------- 主界面逻辑 --------------------------
-st.title("🌱 智能授粉机器人物联网可视化平台")
+st.title("🌱 智能授粉系统客户端")
 st.markdown("### 多区域环境监测 | 授粉状态管理 | AI智能分析")
 st.divider()
 
